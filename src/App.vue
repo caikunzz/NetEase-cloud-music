@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import IndexView from '@/views/IndexView.vue';
-import homeView from '@/views/homeView.vue';
+import IndexView from './views/IndexView.vue';
+import homeView from './views/homeView.vue';
 export default {
   // name:'App',
   components: {
