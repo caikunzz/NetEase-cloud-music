@@ -25,3 +25,6 @@ export const newSong=()=>{
 
 
 export const fetchSearchResult = (params) => http.get('/cloudsearch',{params})
+
+
+export const getMusicCalendar = (params) => http.get('/calendar',{params})

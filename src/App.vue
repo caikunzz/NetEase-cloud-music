@@ -7,7 +7,7 @@
 
 <script>
 import IndexView from './views/IndexView.vue';
-import homeView from './views/homeView.vue';
+import homeView from './views/HomeView/HomeView.vue';
 export default {
   // name:'App',
   components: {
