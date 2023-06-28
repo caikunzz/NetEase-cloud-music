@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import { Icon } from '@iconify/vue2';
-import App from './App.vue'
-import MineView from './views/MineView.vue'
+import App from '@/App.vue'
+import MineView from '@/views/MineView.vue'
 import Vant from 'vant';
 
 
