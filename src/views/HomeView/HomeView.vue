@@ -8,7 +8,10 @@
 
         <!-- 轮播开始 -->
         <van-swipe class="my-swipe mt-4 overflow-hidden rounded-xl" :autoplay="3000" indicator-color="white" :show-indicators="false">
-            <van-swipe-item v-for="item in bannerArr" :key="item.id"><img :src="item" alt="" /></van-swipe-item>
+            <van-swipe-item class=" relative" v-for="item in bannerArr" :key="item.id">
+                <img class="w-[100%]" :src="item.pic" alt="" />
+                <span class=" absolute bottom-1 right-2 bg-white rounded text-xs px-2">{{ item.typeTitle }}</span>
+            </van-swipe-item>
         </van-swipe>
         <!-- 轮播结束 -->
 
@@ -150,10 +153,12 @@ export default {
                 'https://netease-cloud-music-c2c1ys55f-cc-0820.vercel.app/banner?type=2'
             )
             .then((res) => {
-                let arr = res.data.banners;
-                arr.forEach((item) => {
-                    this.bannerArr.push(item.pic);
-                });
+                this.bannerArr = res.data.banners
+                // let arr = res.data.banners;  
+                // console.log(res)
+                // arr.forEach((item) => {
+                //     this.bannerArr.push(item.pic);
+                // });
             })
             .catch((err) => {
                 console.log(err);
@@ -179,7 +184,6 @@ export default {
             )
             .then((res) => {
                 this.recommendArr = res.data.result;
-                console.log(res.data.result)
             })
             .catch((err) => {
                 console.log(err);
