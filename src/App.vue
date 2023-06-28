@@ -1,11 +1,7 @@
 <template>
   <div>
-    <!-- <p><a href="#homeView">homeView</a></p>
-    <p><a href="#IndexView">IndexView</a></p>
-    <p><a href="#MineView">MineView</a></p> -->
     <IndexView v-if="visibleView=='IndexView'"/>
-    <homeView v-else-if="visibleView=='homeView'"/>
-    <MineView v-else/>
+    <homeView v-else/>
   </div>
 </template>
 

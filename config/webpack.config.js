@@ -53,6 +53,7 @@ module.exports = {
       '@': path.resolve(__dirname, '../src'),
       'vue': './vue/dist/vue.esm.js'
     },
+    extensions: ['.js', '.vue']
   },
   externals: {
     vue: 'Vue',
