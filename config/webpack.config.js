@@ -2,6 +2,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const WebpackBar = require('webpackbar');
 const path = require('path');
+const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = {
   entry: './src/index.js',
@@ -20,7 +21,12 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
+        use: [
+          MiniCssExtractPlugin.loader, 
+          // 'vue-style-loader',
+           'css-loader', 
+           'postcss-loader'
+          ],
       },
       {
         test: /\.less$/,
@@ -35,6 +41,10 @@ module.exports = {
         test: /\.(woff | eot | ttf | otf | svg)$/,
         type: 'asset/resource',
       },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader'
+      }
     ],
   },
   mode: process.env.NODE_ENV,
@@ -53,6 +63,7 @@ module.exports = {
     proxy: {
       '^/api': {
         target: 'https://www.starbucks.com.cn/',
+        pathRewrite: { '^/api1': '' },
       },
       '^/bff': {
         target: 'https://bff.starbucks.com.cn/',
@@ -65,6 +76,7 @@ module.exports = {
   },
   plugins: [
     new WebpackBar(),
+    new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash:8].css',
     }),
