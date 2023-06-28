@@ -203,6 +203,7 @@
 import axios from 'axios';
 import _ from 'lodash'
 import { fetchSearchResult, newSong } from '@/request/index';
+import 'vant/lib/index.css';
 
 export default {
   data() {
@@ -313,7 +314,7 @@ export default {
 
 
     // 音乐日历请求
-
+      // axios.get('')
 
   },
 };

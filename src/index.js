@@ -1,15 +1,15 @@
 import Vue from 'vue';
 import { Icon } from '@iconify/vue2';
-import App from '@/App.vue'
-import MineView from '@/views/MineView.vue'
+import App from './App.vue'
+import MineView from './views/MineView.vue'
 import Vant from 'vant';
-import 'vant/lib/index.css';
+
 
 
 
 
 Vue.use(Vant);
-Vue.component('MineView',MineView)
+Vue.component('MineView', MineView)
 Vue.component('Icon', Icon);
 //vm就是根实例  root  具备el，但是其他实例不具备
 // 组件的嵌套 A组件出现在B组件的template中 A是B的子组件
@@ -30,16 +30,16 @@ foot
 // 全局组件：注册一次（在实例化root之前）  全局使用
 const vm = new Vue({
   el: '#app',
-  components:{App},
-  template:'<App/>',
+  components: { App },
+  template: '<App/>',
   // render:(h)=>h(indexView)
   // 实例已经创建，但是实例上的模板还没有渲染
-  created(){
+  created() {
     // console.log(this.$children)
     // console.log(this.$parent)
   },
   //当前组件的template已经渲染到页面上了
-  mounted(){
+  mounted() {
     // console.log(this.$children[0].$children)
   }
 });
