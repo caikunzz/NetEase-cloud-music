@@ -4,12 +4,14 @@ import App from './App.vue'
 // import MineView from '@/views/MineView.vue'
 import Vant from 'vant';
 import Drawer from '@/components/Drawer'
+import { Switch } from 'vant';
 
 
 
 
 
 Vue.use(Vant);
+Vue.use(Switch);
 // Vue.component('MineView', MineView)
 Vue.component('Icon', Icon);
 Vue.component('Drawer',Drawer)

@@ -2,7 +2,7 @@
     <div v-if="viewMoveArr?.length > 1" class=" inline-block w-[30vw] relative">
         <Icon class=" absolute top-[5%] right-[5%] z-[335]" size="48" color="white" icon="ph:number-eight" :rotate="1"
             :horizontalFlip="true" :verticalFlip="true" />
-        <div class=" bg-black  w-[30vw] h-[30vw] overflow-hidden relative">
+        <div class=" bg-black rounded  w-[30vw] h-[30vw] overflow-hidden relative">
             <transition name="abc" class="">
                 <div v-if="vivs" class="shadow w-[30vw] absolute z-[55] ">
                     <img class="w-[30vw]" :src="viewMoveArr[lastindex].picUrl" alt="">

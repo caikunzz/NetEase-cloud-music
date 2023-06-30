@@ -71,7 +71,7 @@
             'min-height': '100vh',
             left: 0,
             top: 0,
-            borderRadius:'0 4vw 4vw 0',
+            // borderRadius:'0 4vw 4vw 0',
             background:'rgb(244 242 242)'
           };
         } else if (this.direction === 'rtl') {
