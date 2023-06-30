@@ -33,11 +33,11 @@
         />
       </svg>
     </h1>
-    <van-swipe class="my-swipe" :loop="false" indicator-color="white">
+    <van-swipe class="my-swipe" :loop="false" :show-indicators="false">
       <van-swipe-item v-for="item in RankingArr" :key="item.id" class="">
         <div
           :key="item.id"
-          class="p-4 mx-4 overflow-hidden bg-white rounded-xl"
+          class="p-4 mx-4 overflow-hidden bg-white dark:bg-black rounded-xl"
         >
           <div class="flex justify-between">
             <h1 class="font-bold text-base tracking-widest flex items-center">

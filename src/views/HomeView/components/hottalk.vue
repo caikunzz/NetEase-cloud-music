@@ -61,7 +61,7 @@
     <div class="swipe my-swipe flex rounded-2xl overflow-auto" >
       <div class="yun flex rounded-2xl mr-3  box-border  py-3" v-for="(item,index) in resArr"
         :key="item.id">
-        <div class="shadow-md w-[90vw] p-4 bg-green-900 bg-opacity-7 text-white rounded-2xl" v-if="index==0">
+        <div class="shadow-md w-[90vw] p-4 dark:bg-black bg-green-900 bg-opacity-7 text-white rounded-2xl" v-if="index==0">
           <p class=" font-bold">{{ item.title }}</p>
             <div class="flex w-[100%] justify-between items-end">
             <p class=" text-sm">{{ item.text }}</p>
@@ -69,28 +69,28 @@
           </div>
         </div>
 
-        <div class="shadow-md w-[90vw] p-4 text-white bg-opacity-7 rounded-2xl bg-purple-600" v-else-if="index==1">
+        <div class="shadow-md w-[90vw] p-4 dark:bg-black text-white bg-opacity-7 rounded-2xl bg-purple-600" v-else-if="index==1">
           <p class=" font-bold">{{ item.title }}</p>
             <div class="flex w-[100%] justify-between items-end">
             <p class=" text-sm">{{ item.text }}</p>
             <img class="w-[15vw] rounded-xl" :src="item.url" alt="">
           </div>
         </div>
-        <div class="shadow-md w-[90vw] p-4 text-white bg-opacity-7 bg-rose-300 rounded-2xl" v-else-if="index==2">
+        <div class="shadow-md w-[90vw] p-4 dark:bg-black text-white bg-opacity-7 bg-rose-300 rounded-2xl" v-else-if="index==2">
           <p class=" font-bold">{{ item.title }}</p>
             <div class="flex w-[100%] justify-between items-end">
             <p class=" text-sm">{{ item.text }}</p>
             <img class="w-[15vw] rounded-xl" :src="item.url" alt="">
           </div>
         </div>
-        <div class="shadow-md w-[90vw] p-4 text-white bg-opacity-3 bg-stone-400 rounded-2xl" v-else-if="index==3">
+        <div class="shadow-md w-[90vw] p-4 dark:bg-black text-white bg-opacity-3 bg-stone-400 rounded-2xl" v-else-if="index==3">
           <p class=" font-bold">{{ item.title }}</p>
             <div class="flex w-[100%] justify-between items-end">
             <p class=" text-sm">{{ item.text }}</p>
             <img class="w-[15vw] rounded-xl" :src="item.url" alt="">
           </div>
         </div>
-        <div class="shadow-md w-[90vw] p-4 text-white bg-opacity-7 bg-yellow-800 rounded-2xl" v-else>
+        <div class="shadow-md w-[90vw] p-4 dark:bg-black text-white bg-opacity-7 bg-yellow-800 rounded-2xl" v-else>
           <p class=" font-bold">{{ item.title }}</p>
             <div class="flex w-[100%] justify-between items-end">
             <p class=" text-sm">{{ item.text }}</p>

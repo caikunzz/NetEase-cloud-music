@@ -1,10 +1,10 @@
 <template>
-    <div @click="clickHandler">
+    <div @click="clickHandler" class="dark:bg-balck">
       <transition :name="direction">
         <div
           v-show="visible"
-          class="w-screen bg-white fixed z-[999] p-[2vw] box-border"
-          :style="[drawerContentStyle, { width }]"
+          class="w-screen  fixed z-[999] p-[2vw] box-border bg-white dark:bg-zinc-800"
+          :style="[drawerContentStyle, { width },{bgd:show}]"
         >
           <div class="border-b py-2">
             <slot name="header">
@@ -29,7 +29,16 @@
   <script>
   export default {
     // 单向数据流（父级通过props传递给子组件的数据 子组件没有权利修改）
+    data(){
+      return {
+        show:false,
+        bgd:{
+        background:'black'
+      }
+      }
+    },
     props: {
+      // switchcheck,
       visible: {
         type: Boolean,
         required: true,
@@ -73,7 +82,7 @@
             left: 0,
             top: 0,
             // borderRadius:'0 4vw 4vw 0',
-            background:'rgb(244 242 242)'
+            // background:'rgb(244 242 242)'
           };
         } else if (this.direction === 'rtl') {
           return {
@@ -96,6 +105,10 @@
         }
       },
     },
+    mounted(){
+      console.log(this)
+      this.show = this.$attrs.switchcheck;
+    }
   };
   </script>
   <style scoped>

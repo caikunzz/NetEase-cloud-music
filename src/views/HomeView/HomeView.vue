@@ -1,6 +1,8 @@
 <template>
+  <div :class="{dark:switchcheck}">
   <div
-    class="overflow-hidden relative box-border p-5 bg-gradient-to-b from-purple-200 via-gray-100 to-gray-100"
+    class="overflow-hidden relative box-border p-5 bg-gradient-to-b via-gray-100 to-gray-100 dark:bg-zinc-800 text-[#000] dark:text-[#fff]"
+    :class="{'from-purple-200':!switchcheck}"
   >
     <!-- <viewmove></viewmove> -->
 
@@ -12,6 +14,7 @@
         :searchName="searchName"
         :title.sync="title"
         :visible.sync="mineVisible"
+        :switchcheck="switchcheck"
       />
     </section>
     <!-- 头部结束 -->
@@ -25,7 +28,7 @@
     >
       <van-swipe-item class="relative" v-for="item in bannerArr" :key="item.id">
         <img class="w-[100%]" :src="item.pic" alt="" />
-        <span class="absolute bottom-1 right-2 bg-white rounded text-xs px-2">{{
+        <span class="absolute bottom-1 right-2 bg-white dark:bg-slate-950 rounded text-xs px-2">{{
           item.typeTitle
         }}</span>
       </van-swipe-item>
@@ -150,7 +153,7 @@
       </div>
     </Drawer>
 
-    <Drawer :visible.sync="mineVisible" :direction="'ltr'" :title="title">
+    <Drawer :visible.sync="mineVisible" :direction="'ltr'" :title="title" :switchcheck="switchcheck">
       <header
         slot="header"
         class="flex items-center overflow-hidden justify-around box-border pr-[3vw]"
@@ -162,19 +165,23 @@
             alt=""
           />
           <span class="mx-[2vw] font-extrabold">守护最好的kunkun</span>
-          <Icon icon="icon-park:right" />
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 208 456"><path fill="currentColor" d="M9 388q8 4 15 4q11 0 17-6l162-186L41 14Q26-1 11 12Q-4 29 9 42l137 156L9 354q-13 19 0 34z"/></svg>
         </div>
         <Icon icon="lucide:scan-line" width="15vw" height="15vw" />
       </header>
       <div class="overflow-auto h-[100vh] pb-[20vh]">
         <div>
           <div
-            class="rounded-[5vw]  bg-gradient-to-tr from-neutral-950 to-yellow-950 bg-opacity-75 box-border px-[4vw] pt-[4vw] text-[#e1e3e7]"
+            class="rounded-[5vw] bg-gradient-to-tr from-neutral-950 to-yellow-950 bg-opacity-75 box-border px-[4vw] pt-[4vw] text-[#e1e3e7]"
           >
             <div class=" ">
               <div class="flex justify-between items-center">
                 <p class="font-bold mb-1 tracking-wide">续费黑胶VIP</p>
-                <p class="px-2 py-1 border text-xs text-orange-50 border-orange-50 rounded-xl">会员中心</p>
+                <p
+                  class="px-2 py-1 border text-xs text-orange-50 border-orange-50 rounded-xl"
+                >
+                  会员中心
+                </p>
               </div>
               <p class="flex items-center text-sm">
                 点击回复21项专属特权<Icon
@@ -184,14 +191,24 @@
               </p>
             </div>
             <div class="flex justify-between items-center">
-              <p class="text-sm whitespace-nowrap">受邀专享，黑胶VIP仅0.29元/天！</p>
+              <p class="text-sm whitespace-nowrap">
+                受邀专享，黑胶VIP仅0.29元/天！
+              </p>
               <p
-                class="flex flex-wrap rounded overflow-hidden bg-orange-500 py-2 origin-center  scale-50"
+                class="flex flex-wrap rounded overflow-hidden bg-orange-500 py-2 origin-center scale-50"
               >
-                <span class="w-[50%] text-white font-bold text-md text-center">受</span>
-                <span class="w-[50%] text-white font-bold text-md text-center">邀</span>
-                <span class="w-[50%] text-white font-bold text-md text-center">专</span>
-                <span class="w-[50%] text-white font-bold text-md text-center">享</span>
+                <span class="w-[50%] text-white font-bold text-md text-center"
+                  >受</span
+                >
+                <span class="w-[50%] text-white font-bold text-md text-center"
+                  >邀</span
+                >
+                <span class="w-[50%] text-white font-bold text-md text-center"
+                  >专</span
+                >
+                <span class="w-[50%] text-white font-bold text-md text-center"
+                  >享</span
+                >
               </p>
             </div>
           </div>
@@ -199,31 +216,37 @@
 
         <!-- 消息中心 -->
         <ul
-          class="rounded-[5vw] bg-white box-border px-[4vw] overflow-hidden my-[4vw] shadow"
+          class="rounded-[5vw] bg-white box-border dark:bg-black px-[4vw] overflow-hidden my-[4vw] shadow"
         >
-          <li class="flex justify-between items-center py-[3vw] border-b">
+          <li class="flex justify-between items-center py-[3vw] dark:border-none border-b">
             <p class="flex items-center">
               <Icon icon="carbon:email" />
-              <span class="ml-2 tracking-wider whitespace-nowrap text-xs">消息中心</span>
+              <span class="ml-2 tracking-wider whitespace-nowrap text-xs"
+                >消息中心</span
+              >
             </p>
             <p class="flex items-center">
               <Icon icon="mingcute:right-line" color="#ccc" />
             </p>
           </li>
-          <li class="flex justify-between items-center py-[3vw] border-b">
+          <li class="flex justify-between items-center py-[3vw] dark:border-none border-b">
             <p class="flex items-center">
               <Icon icon="cib:shell" />
-              <span class="ml-2 tracking-wider whitespace-nowrap text-xs">云贝中心</span>
+              <span class="ml-2 tracking-wider whitespace-nowrap text-xs"
+                >云贝中心</span
+              >
             </p>
             <p class="flex items-center">
               <span class="text-gray-400 text-xs">签到</span>
               <Icon icon="mingcute:right-line" color="#ccc" />
             </p>
           </li>
-          <li class="flex justify-between items-center py-[3vw] border-b">
+          <li class="flex justify-between items-center py-[3vw] dark:border-none border-b">
             <p class="flex items-center">
               <Icon icon="mdi:lightbulb-on-outline" />
-              <span class="ml-2 tracking-wider whitespace-nowrap text-xs">创作者中心</span>
+              <span class="ml-2 tracking-wider whitespace-nowrap text-xs"
+                >创作者中心</span
+              >
             </p>
             <p class="flex items-center">
               <Icon icon="mingcute:right-line" color="#ccc" />
@@ -233,70 +256,84 @@
 
         <!-- 音乐服务 -->
         <ul
-          class="rounded-[5vw] bg-white box-border px-[4vw] overflow-hidden my-[4vw] shadow"
+          class="rounded-[5vw] bg-white box-border dark:bg-black px-[4vw] overflow-hidden my-[4vw] shadow"
         >
           <li class="text-xs text-gray-400 pt-[3vw]">音乐服务</li>
-          <li class="flex justify-between items-center py-[3vw] border-b">
+          <li class="flex justify-between items-center py-[3vw] dark:border-none border-b">
             <p class="flex items-center">
               <Icon icon="emojione-monotone:dotted-six-pointed-star" />
-              <span class="ml-2 tracking-wider whitespace-nowrap text-xs">趣测</span>
+              <span class="ml-2 tracking-wider whitespace-nowrap text-xs"
+                >趣测</span
+              >
             </p>
             <p class="flex items-center">
               <span class="text-gray-400 text-xs">查看今日运势</span>
               <Icon icon="mingcute:right-line" color="#ccc" />
             </p>
           </li>
-          <li class="flex justify-between items-center py-[3vw] border-b">
+          <li class="flex justify-between items-center py-[3vw] dark:border-none border-b">
             <p class="flex items-center">
               <Icon icon="fluent:ticket-diagonal-16-regular" :rotate="2" />
-              <span class="ml-2 tracking-wider whitespace-nowrap text-xs">云村有票</span>
+              <span class="ml-2 tracking-wider whitespace-nowrap text-xs"
+                >云村有票</span
+              >
             </p>
             <p class="flex items-center">
               <span class="text-gray-400 text-xs">签到</span>
               <Icon icon="mingcute:right-line" color="#ccc" />
             </p>
           </li>
-          <li class="flex justify-between items-center py-[3vw] border-b">
+          <li class="flex justify-between items-center py-[3vw] dark:border-none border-b">
             <p class="flex items-center">
               <Icon icon="solar:box-broken" />
-              <span class="ml-2 tracking-wider whitespace-nowrap text-xs">多多西口袋</span>
+              <span class="ml-2 tracking-wider whitespace-nowrap text-xs"
+                >多多西口袋</span
+              >
             </p>
             <p class="flex items-center">
               <Icon icon="mingcute:right-line" color="#ccc" />
             </p>
           </li>
-          <li class="flex justify-between items-center py-[3vw] border-b">
+          <li class="flex justify-between items-center py-[3vw] dark:border-none border-b">
             <p class="flex items-center">
               <Icon icon="icon-park-outline:shopping-bag" />
-              <span class="ml-2 tracking-wider whitespace-nowrap text-xs">商城</span>
+              <span class="ml-2 tracking-wider whitespace-nowrap text-xs"
+                >商城</span
+              >
             </p>
             <p class="flex items-center">
               <Icon icon="mingcute:right-line" color="#ccc" />
             </p>
           </li>
-          <li class="flex justify-between items-center py-[3vw] border-b">
+          <li class="flex justify-between items-center py-[3vw] dark:border-none border-b">
             <p class="flex items-center">
               <Icon icon="ph:heartbeat" />
-              <span class="ml-2 tracking-wider whitespace-nowrap text-xs">Beat专区</span>
+              <span class="ml-2 tracking-wider whitespace-nowrap text-xs"
+                >Beat专区</span
+              >
             </p>
             <p class="flex items-center">
               <span class="text-gray-400 text-xs">顶尖制作邀你创作</span>
               <Icon icon="mingcute:right-line" color="#ccc" />
             </p>
           </li>
-          <li class="flex justify-between items-center py-[3vw] border-b">
+          <li class="flex justify-between items-center py-[3vw] dark:border-none border-b">
             <p class="flex items-center">
               <Icon icon="tabler:bell-ringing-2" />
-              <span class="ml-2 tracking-wider whitespace-nowrap text-xs">口袋彩铃</span>
+              <span class="ml-2 tracking-wider whitespace-nowrap text-xs"
+                >口袋彩铃</span
+              >
             </p>
             <p class="flex items-center">
               <Icon icon="mingcute:right-line" color="#ccc" />
             </p>
           </li>
-          <li class="flex justify-between items-center py-[3vw] border-b">
+          <li class="flex justify-between items-center py-[3vw] dark:border-none border-b">
             <p class="flex items-center">
               <Icon icon="icon-park-outline:game-handle" />
-              <span class="ml-2 tracking-wider whitespace-nowrap text-xs">游戏专区</span>
+              <span class="ml-2 tracking-wider whitespace-nowrap text-xs"
+                >游戏专区</span
+              >
             </p>
             <p class="flex items-center">
               <span class="text-gray-400 text-xs">音乐浇灌治愈花园</span>
@@ -307,101 +344,122 @@
 
         <!-- 其他 -->
         <ul
-          class="rounded-[5vw] bg-white box-border px-[4vw] overflow-hidden my-[4vw] shadow"
+          class="rounded-[5vw] bg-white box-border dark:bg-black px-[4vw] overflow-hidden my-[4vw] shadow"
         >
           <li class="text-xs text-gray-400 pt-[3vw]">其他</li>
-          <li class="flex justify-between items-center py-[3vw] border-b">
+          <li class="flex justify-between items-center py-[3vw] dark:border-none border-b">
             <p class="flex items-center">
               <Icon icon="icon-park-outline:setting-one" :rotate="3" />
-              <span class="ml-2 tracking-wider whitespace-nowrap text-xs">设置</span>
+              <span class="ml-2 tracking-wider whitespace-nowrap text-xs"
+                >设置</span
+              >
             </p>
             <p class="flex items-center">
               <span class="text-gray-400 text-xs"></span>
               <Icon icon="mingcute:right-line" color="#ccc" />
             </p>
           </li>
-          <li class="flex justify-between items-center py-[3vw] border-b">
+          <li class="flex justify-between items-center py-[3vw] dark:border-none border-b">
             <p class="flex items-center">
               <Icon icon="line-md:light-dark-loop" />
-              <span class="ml-2 tracking-wider whitespace-nowrap text-xs">深色模式</span>
+              <span class="ml-2 tracking-wider whitespace-nowrap text-xs"
+                >深色模式</span
+              >
             </p>
             <p class="flex items-center">
-              <van-switch v-model="checked" size="5vw"/>
+              <!-- <van-switch v-model="checked" size="5vw" /> -->
+              <v-switch v-model="switchcheck" ></v-switch>
             </p>
           </li>
-          <li class="flex justify-between items-center py-[3vw] border-b">
+          <li class="flex justify-between items-center py-[3vw] dark:border-none border-b">
             <p class="flex items-center">
               <Icon icon="gala:clock" />
-              <span class="ml-2 tracking-wider whitespace-nowrap text-xs">定时关闭</span>
+              <span class="ml-2 tracking-wider whitespace-nowrap text-xs"
+                >定时关闭</span
+              >
             </p>
             <p class="flex items-center">
               <Icon icon="mingcute:right-line" color="#ccc" />
             </p>
           </li>
-          <li class="flex justify-between items-center py-[3vw] border-b">
+          <li class="flex justify-between items-center py-[3vw] dark:border-none border-b">
             <p class="flex items-center">
               <Icon
                 icon="streamline:shopping-catergories-shirt-clothing-t-shirt-men-top"
               />
-              <span class="ml-2 tracking-wider whitespace-nowrap text-xs">个性装扮</span>
+              <span class="ml-2 tracking-wider whitespace-nowrap text-xs"
+                >个性装扮</span
+              >
             </p>
             <p class="flex items-center">
               <Icon icon="mingcute:right-line" color="#ccc" />
             </p>
           </li>
-          <li class="flex justify-between items-center py-[3vw] border-b">
+          <li class="flex justify-between items-center py-[3vw] dark:border-none border-b">
             <p class="flex items-center">
               <Icon icon="teenyicons:headset-outline" />
-              <span class="ml-2 tracking-wider whitespace-nowrap text-xs">边听边存</span>
+              <span class="ml-2 tracking-wider whitespace-nowrap text-xs"
+                >边听边存</span
+              >
             </p>
             <p class="flex items-center">
               <span class="text-gray-400 text-xs">未开启</span>
               <Icon icon="mingcute:right-line" color="#ccc" />
             </p>
           </li>
-          <li class="flex justify-between items-center py-[3vw] border-b">
+          <li class="flex justify-between items-center py-[3vw] dark:border-none border-b">
             <p class="flex items-center">
               <Icon icon="icon-park-outline:online-meeting" />
-              <span class="ml-2 tracking-wider whitespace-nowrap text-xs">在线听歌免流量</span>
+              <span class="ml-2 tracking-wider whitespace-nowrap text-xs"
+                >在线听歌免流量</span
+              >
             </p>
             <p class="flex items-center">
               <Icon icon="mingcute:right-line" color="#ccc" />
             </p>
           </li>
-          <li class="flex justify-between items-center py-[3vw] border-b">
+          <li class="flex justify-between items-center py-[3vw] dark:border-none border-b">
             <p class="flex items-center">
               <Icon icon="iconoir:apple-shortcuts" />
-              <span class="ml-2 tracking-wider whitespace-nowrap text-xs">添加Siri捷径</span>
+              <span class="ml-2 tracking-wider whitespace-nowrap text-xs"
+                >添加Siri捷径</span
+              >
             </p>
             <p class="flex items-center">
               <span class="text-gray-400 text-xs"></span>
               <Icon icon="mingcute:right-line" color="#ccc" />
             </p>
           </li>
-          <li class="flex justify-between items-center py-[3vw] border-b">
+          <li class="flex justify-between items-center py-[3vw] dark:border-none border-b">
             <p class="flex items-center">
               <Icon icon="uiw:stop-o" :rotate="2" />
-              <span class="ml-2 tracking-wider whitespace-nowrap text-xs">音乐黑名单</span>
+              <span class="ml-2 tracking-wider whitespace-nowrap text-xs"
+                >音乐黑名单</span
+              >
             </p>
             <p class="flex items-center">
               <span class="text-gray-400 text-xs"></span>
               <Icon icon="mingcute:right-line" color="#ccc" />
             </p>
           </li>
-          <li class="flex justify-between items-center py-[3vw] border-b">
+          <li class="flex justify-between items-center py-[3vw] dark:border-none border-b">
             <p class="flex items-center">
               <Icon icon="gala:secure" />
-              <span class="ml-2 tracking-wider whitespace-nowrap text-xs">青少年模式</span>
+              <span class="ml-2 tracking-wider whitespace-nowrap text-xs"
+                >青少年模式</span
+              >
             </p>
             <p class="flex items-center">
               <span class="text-gray-400 text-xs"></span>
               <Icon icon="mingcute:right-line" color="#ccc" />
             </p>
           </li>
-          <li class="flex justify-between items-center py-[3vw] border-b">
+          <li class="flex justify-between items-center py-[3vw] dark:border-none border-b">
             <p class="flex items-center">
               <Icon icon="mdi:alarm-clock" />
-              <span class="ml-2 tracking-wider whitespace-nowrap text-xs">音乐闹钟</span>
+              <span class="ml-2 tracking-wider whitespace-nowrap text-xs"
+                >音乐闹钟</span
+              >
             </p>
             <p class="flex items-center">
               <span class="text-gray-400 text-xs"></span>
@@ -411,84 +469,100 @@
         </ul>
 
         <ul
-          class="rounded-[5vw] bg-white box-border px-[4vw] overflow-hidden my-[4vw] shadow"
+          class="rounded-[5vw] bg-white box-border px-[4vw] dark:bg-black overflow-hidden my-[4vw] shadow"
         >
-          <li class="flex justify-between items-center py-[3vw] border-b">
+          <li class="flex justify-between items-center py-[3vw] dark:border-none border-b">
             <p class="flex items-center">
               <Icon icon="teenyicons:headset-outline" />
-              <span class="ml-2 tracking-wider whitespace-nowrap text-xs">我的客服</span>
+              <span class="ml-2 tracking-wider whitespace-nowrap text-xs"
+                >我的客服</span
+              >
             </p>
             <p class="flex items-center">
               <span class="text-gray-400 text-xs"></span>
               <Icon icon="mingcute:right-line" color="#ccc" />
             </p>
           </li>
-          <li class="flex justify-between items-center py-[3vw] border-b">
+          <li class="flex justify-between items-center py-[3vw] dark:border-none border-b">
             <p class="flex items-center">
               <Icon icon="mdi:paper-text-outline" />
-              <span class="ml-2 tracking-wider whitespace-nowrap text-xs">我的订单</span>
+              <span class="ml-2 tracking-wider whitespace-nowrap text-xs"
+                >我的订单</span
+              >
             </p>
             <p class="flex items-center">
               <span class="text-gray-400 text-xs"></span>
               <Icon icon="mingcute:right-line" color="#ccc" />
             </p>
           </li>
-          <li class="flex justify-between items-center py-[3vw] border-b">
+          <li class="flex justify-between items-center py-[3vw] dark:border-none border-b">
             <p class="flex items-center">
               <Icon icon="ri:coupon-line" />
-              <span class="ml-2 tracking-wider whitespace-nowrap text-xs">优惠券</span>
+              <span class="ml-2 tracking-wider whitespace-nowrap text-xs"
+                >优惠券</span
+              >
             </p>
             <p class="flex items-center">
               <span class="text-gray-400 text-xs"></span>
               <Icon icon="mingcute:right-line" color="#ccc" />
             </p>
           </li>
-          <li class="flex justify-between items-center py-[3vw] border-b">
+          <li class="flex justify-between items-center py-[3vw] dark:border-none border-b">
             <p class="flex items-center">
               <Icon icon="ri:share-circle-line" />
-              <span class="ml-2 tracking-wider whitespace-nowrap text-xs">分享网易云音乐</span>
+              <span class="ml-2 tracking-wider whitespace-nowrap text-xs"
+                >分享网易云音乐</span
+              >
             </p>
             <p class="flex items-center">
               <span class="text-gray-400 text-xs"></span>
               <Icon icon="mingcute:right-line" color="#ccc" />
             </p>
           </li>
-          <li class="flex justify-between items-center py-[3vw] border-b">
+          <li class="flex justify-between items-center py-[3vw] dark:border-none border-b">
             <p class="flex items-center">
               <Icon
                 icon="streamline:interface-file-clipboard-check-checkmark-edit-task-edition-checklist-check-success-clipboard-form"
               />
-              <span class="ml-2 tracking-wider whitespace-nowrap text-xs">个人信息收集与使用清单</span>
+              <span class="ml-2 tracking-wider whitespace-nowrap text-xs"
+                >个人信息收集与使用清单</span
+              >
             </p>
             <p class="flex items-center">
               <span class="text-gray-400 text-xs"></span>
               <Icon icon="mingcute:right-line" color="#ccc" />
             </p>
           </li>
-          <li class="flex justify-between items-center py-[3vw] border-b">
+          <li class="flex justify-between items-center py-[3vw] dark:border-none border-b">
             <p class="flex items-center">
               <Icon icon="solar:share-circle-outline" />
-              <span class="ml-2 tracking-wider whitespace-nowrap text-xs">个人信息第三方共享清单</span>
+              <span class="ml-2 tracking-wider whitespace-nowrap text-xs"
+                >个人信息第三方共享清单</span
+              >
             </p>
             <p class="flex items-center">
               <span class="text-gray-400 text-xs"></span>
               <Icon icon="mingcute:right-line" color="#ccc" />
             </p>
           </li>
-          <li class="flex justify-between items-center py-[3vw] border-b">
+          <li class="flex justify-between items-center py-[3vw] dark:border-none border-b">
             <p class="flex items-center">
               <Icon icon="material-symbols:privacy-tip-outline-rounded" />
-              <span class="ml-2 tracking-wider whitespace-nowrap text-xs">个人信息与隐私保护</span>
+              <span class="ml-2 tracking-wider whitespace-nowrap text-xs"
+                >个人信息与隐私保护</span
+              >
             </p>
             <p class="flex items-center">
               <span class="text-gray-400 text-xs"></span>
               <Icon icon="mingcute:right-line" color="#ccc" />
             </p>
           </li>
-          <li class="flex justify-between items-center py-[3vw] border-b">
+          <li class="flex justify-between items-center py-[3vw] dark:border-none border-b">
             <p class="flex items-center">
               <Icon icon="mi:circle-information" />
-              <span class="ml-2 tracking-wider whitespace-nowrap text-xs">关于</span>
+              <span class="ml-2 tracking-wider whitespace-nowrap text-xs"
+                >关于</span
+              >
             </p>
             <p class="flex items-center">
               <span class="text-gray-400 text-xs"></span>
@@ -498,12 +572,17 @@
         </ul>
 
         <ul
-          class="rounded-[3vw] bg-white box-border p-[4vw] overflow-hidden my-[4vw] shadow"
+          class="rounded-[3vw] bg-white dark:bg-black box-border p-[4vw] overflow-hidden my-[4vw] shadow"
         >
           <li class="text-center text-red-500">退出登录</li>
         </ul>
       </div>
     </Drawer>
+
+    <!-- <v-switch :value.sync="switchcheck"></v-switch> -->
+    <!-- <v-switch v-model="switchcheck"></v-switch> -->
+    <!-- <v-switch :value="switchcheck" @input="(e) => (switchcheck = e)"></v-switch> -->
+  </div>
   </div>
 </template>
 
@@ -538,7 +617,8 @@ export default {
   },
   data() {
     return {
-      checked:false,
+      switchcheck: false,
+      checked: false,
       mineVisible: false,
       title: '推荐歌单',
       drawerVisible: false,

@@ -38,7 +38,7 @@
       class="my-swipe overflow-hidden"
       :indicator="false"
       :loop="false"
-      indicator-color="white"
+      :show-indicators="false"
     >
       <van-swipe-item
         class="flex flex-col items-start py-3"

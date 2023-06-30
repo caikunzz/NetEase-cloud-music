@@ -2,8 +2,8 @@
     <div>
         <h1 class="flex justify-between items-center mt-4">
             <div class="flex justify-between items-center">
-                <span class="font-black mr-3">音乐日历</span>
-                <span class="flex items-center text-xs rounded-lg bg-gray-200 px-2">
+                <span class="font-black  mr-3">音乐日历</span>
+                <span class="flex items-center text-xs rounded-lg bg-gray-200 dark:bg-black px-2">
                     <span>今日两条</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
                         <g fill="none" fill-rule="evenodd">
@@ -21,8 +21,8 @@
             </svg>
         </h1>
 
-        <ul class=" bg-white rounded-xl my-4 shadow md:shadow-lg ">
-            <li v-for="(item, index) in musiccalendarArr" :key="index" class="flex border-y justify-between p-4">
+        <ul class=" bg-white dark:bg-black  rounded-xl my-4 shadow md:shadow-lg ">
+            <li v-for="(item, index) in musiccalendarArr" :key="index" class="flex dark:border-none border-y justify-between p-4">
                 <div class="flex flex-col justify-between">
                     <p class=" text-xs">
                         <span class="mr-1 text-zinc-500" v-if="index == 0">今天</span>

@@ -4,17 +4,19 @@ import App from './App.vue'
 // import MineView from '@/views/MineView.vue'
 import Vant from 'vant';
 import Drawer from '@/components/Drawer'
-import { Switch } from 'vant';
-
+// import { Switch } from 'vant';
+import Switch  from '@/components/Switch';
 
 
 
 
 Vue.use(Vant);
-Vue.use(Switch);
+// Vue.use(Switch);
 // Vue.component('MineView', MineView)
 Vue.component('Icon', Icon);
 Vue.component('Drawer',Drawer)
+Vue.component('v-switch',Switch)
+
 //vm就是根实例  root  具备el，但是其他实例不具备
 // 组件的嵌套 A组件出现在B组件的template中 A是B的子组件
 // 如果一个组件没有父组件，则说明它是根组件
