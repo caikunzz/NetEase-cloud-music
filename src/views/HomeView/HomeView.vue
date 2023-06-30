@@ -161,12 +161,12 @@
             src="https://p1.music.126.net/jS92kW49E37VDr8f6A1ZKg==/109951167550777780.jpg"
             alt=""
           />
-          <span class="mx-[2vw] font-extrabold ">守护最好的kunkun</span>
+          <span class="mx-[2vw] font-extrabold">守护最好的kunkun</span>
           <Icon icon="icon-park:right" />
         </div>
         <Icon icon="lucide:scan-line" width="15vw" height="15vw" />
       </header>
-      <div class=" overflow-auto min-h-screen h-screen pb-[20vh]">
+      <div class="overflow-auto min-h-screen h-screen pb-[20vh]">
         <div>
           <div
             class="rounded-[5vw] bg-orange-950 box-border p-[4vw] text-[#e1e3e7]"
@@ -267,7 +267,7 @@
           </li>
           <li class="flex justify-between items-center py-[3vw] border-b">
             <p class="flex items-center">
-              <Icon icon="icon-park-outline:shopping-bag"  />
+              <Icon icon="icon-park-outline:shopping-bag" />
               <span class="ml-2 tracking-wider">商城</span>
             </p>
             <p class="flex items-center">
@@ -276,7 +276,7 @@
           </li>
           <li class="flex justify-between items-center py-[3vw] border-b">
             <p class="flex items-center">
-              <Icon icon="ph:heartbeat"  />
+              <Icon icon="ph:heartbeat" />
               <span class="ml-2 tracking-wider">Beat专区</span>
             </p>
             <p class="flex items-center">
@@ -304,7 +304,6 @@
             </p>
           </li>
         </ul>
-
 
         <!-- 其他 -->
         <ul
@@ -342,7 +341,9 @@
           </li>
           <li class="flex justify-between items-center py-[3vw] border-b">
             <p class="flex items-center">
-              <Icon icon="streamline:shopping-catergories-shirt-clothing-t-shirt-men-top" />
+              <Icon
+                icon="streamline:shopping-catergories-shirt-clothing-t-shirt-men-top"
+              />
               <span class="ml-2 tracking-wider">个性装扮</span>
             </p>
             <p class="flex items-center">
@@ -455,7 +456,9 @@
           </li>
           <li class="flex justify-between items-center py-[3vw] border-b">
             <p class="flex items-center">
-              <Icon icon="streamline:interface-file-clipboard-check-checkmark-edit-task-edition-checklist-check-success-clipboard-form" />
+              <Icon
+                icon="streamline:interface-file-clipboard-check-checkmark-edit-task-edition-checklist-check-success-clipboard-form"
+              />
               <span class="ml-2 tracking-wider">个人信息收集与使用清单</span>
             </p>
             <p class="flex items-center">
@@ -495,8 +498,10 @@
           </li>
         </ul>
 
-        <ul  class="rounded-[3vw] bg-white box-border p-[4vw] overflow-hidden my-[4vw] shadow">
-            <li class=" text-center text-red-500">退出登录</li>
+        <ul
+          class="rounded-[3vw] bg-white box-border p-[4vw] overflow-hidden my-[4vw] shadow"
+        >
+          <li class="text-center text-red-500">退出登录</li>
         </ul>
       </div>
     </Drawer>
@@ -534,7 +539,7 @@ export default {
   },
   data() {
     return {
-      mineVisible: true,
+      mineVisible: false,
       title: '推荐歌单',
       drawerVisible: false,
       vivs: true,
