@@ -5,6 +5,7 @@
           v-show="visible"
           class="w-screen  fixed z-[999] p-[2vw] box-border bg-white dark:bg-zinc-800"
           :style="[drawerContentStyle, { width },{bgd:show}]"
+          :class="direction=='ltr'?'bg-[#f4f2f2]':''"
         >
           <div class="border-b py-2">
             <slot name="header">
