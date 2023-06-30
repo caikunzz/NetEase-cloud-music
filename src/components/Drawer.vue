@@ -68,7 +68,8 @@
           };
         } else if (this.direction === 'ltr') {
           return {
-            'min-height': '100vh',
+            // 'min-height': '100vh',
+            height:'100vh',
             left: 0,
             top: 0,
             // borderRadius:'0 4vw 4vw 0',

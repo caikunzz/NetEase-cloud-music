@@ -166,7 +166,7 @@
         </div>
         <Icon icon="lucide:scan-line" width="15vw" height="15vw" />
       </header>
-      <div class="overflow-auto min-h-screen h-screen pb-[20vh]">
+      <div class="overflow-auto h-[100vh] pb-[20vh]">
         <div>
           <div
             class="rounded-[5vw]  bg-gradient-to-tr from-neutral-950 to-yellow-950 bg-opacity-75 box-border px-[4vw] pt-[4vw] text-[#e1e3e7]"
