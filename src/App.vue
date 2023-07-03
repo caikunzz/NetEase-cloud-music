@@ -1,33 +1,18 @@
 <template>
   <div>
-    <IndexView v-if="visibleView=='IndexView'"/>
-    <homeView v-else/>
+    <!-- <IndexView v-if="visibleView=='IndexView'"/>
+    <homeView v-else/> -->
+
+    <component :is="currentComponent" />
   </div>
 </template>
 
 <script>
-import IndexView from './views/IndexView.vue';
-import homeView from './views/HomeView/HomeView.vue';
-export default {
-  // name:'App',
-  components: {
-    IndexView,
-    homeView,
-  },
-  data() {
-    return {
-      visibleView: 'homeView',
-    };
-  },
-  beforeCreate() {
-    window.onhashchange = () => {
-      this.visibleView = location.hash.replace('#', '');
-    };
-  },
-  created() {
-    window.vm = this;
-  },
-};
+import router from '@/router';
+export default{
+  // 混合
+  mixins:[router]
+}
 </script>
 
 <style>
