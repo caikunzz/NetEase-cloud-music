@@ -35,6 +35,7 @@
       v-model="searchKeywords"
       class="rounded-xl border-2 border-purple-300 pl-[10%] bg-gradient-to-r dark:bg-slate-950 dark:border-white to-purple-200 w-[70%] text-base"
       :class="{'from-pink-200':!switchcheck}"
+      @click="toSousuo"
 
     />
     <svg
@@ -105,6 +106,9 @@ export default {
     }, 500),
   },
   methods: {
+    toSousuo(){
+      this.$router.push('SousuoView')
+    },
     serachHand() {
       this.serachHandler();
     },

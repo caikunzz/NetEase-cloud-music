@@ -107,7 +107,7 @@
       },
     },
     mounted(){
-      console.log(this)
+      // console.log(this)
       this.show = this.$attrs.switchcheck;
     }
   };

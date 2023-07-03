@@ -1,11 +1,46 @@
 import Vue from 'vue';
 import { Icon } from '@iconify/vue2';
 import App from './App.vue'
+import _ from 'lodash';
 // import MineView from '@/views/MineView.vue'
 import Vant from 'vant';
 import Drawer from '@/components/Drawer'
 // import { Switch } from 'vant';
 import Switch  from '@/components/Switch';
+
+import IndexView from '@/views/IndexView.vue';
+import HomeView from '@/views/HomeView/HomeView.vue';
+import SousuoView from '@/views/SousuoView.vue'
+
+//1.引入路由插件
+import VueRouter from 'vue-router'
+
+// 2.注册路由所提供的全局组件
+Vue.use(VueRouter)
+
+// 3.
+const router = new VueRouter({
+  routes:[
+    //路径重定向
+    {
+      path:'/',
+      redirect:'/HomeView'
+    },
+    {
+      path:'/IndexView',
+      component:IndexView,
+    },
+    {
+      path:'/HomeView',
+      component:HomeView,
+    },
+    {
+      path:'/SousuoView',
+      component:SousuoView
+    }
+
+  ]
+})
 
 
 
@@ -36,6 +71,9 @@ foot
 // 全局组件：注册一次（在实例化root之前）  全局使用
 const vm = new Vue({
   el: '#app',
+  // 4.将router注入到根实例中  router-view(渲染)  router-link(跳转)
+  // 提供了两个vue实例（全局）的属性 $router === router、   $route
+  router,
   components: { App },
   template: '<App/>',
   // render:(h)=>h(indexView)

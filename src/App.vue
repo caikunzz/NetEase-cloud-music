@@ -1,17 +1,22 @@
 <template>
   <div>
-    <!-- <IndexView v-if="visibleView=='IndexView'"/>
-    <homeView v-else/> -->
+    <!-- 声明式导航 -->
+    <!-- <router-link to="IndexView">go to indexView</router-link> -->
+    <!-- <router-link :to="{path:'/IndexView/123'}">go to indexView</router-link> -->
 
-    <component :is="currentComponent" />
+    <router-view/>
   </div>
 </template>
 
 <script>
-import router from '@/router';
 export default{
-  // 混合
-  mixins:[router]
+  created(){
+    // console.log(this.$route.params)
+    // 编程式导航
+    // setTimeout(() => {
+    //     this.$router.push('IndexView')
+    // }, 10000);
+  }
 }
 </script>
 
