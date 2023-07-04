@@ -229,6 +229,10 @@ export default {
     );
     // console.log(lists.data.data[0]);
     this.paihangArr = lists.data.data;
+
+
+    let details = await axios.get('/playlist/track/all?id=2179431622&limit=10')
+    console.log(details)
   },
   mounted() {
     ph = new BScroll(this.$refs.wrappers, {
