@@ -14,6 +14,7 @@
         :searchName="searchName"
         :title.sync="title"
         :visible.sync="mineVisible"
+        :visibless.sync="sousuoVisible"
         :switchcheck="switchcheck"
       />
     </section>
@@ -98,37 +99,14 @@
       />
     </section>
     <!-- 音乐日历结束 -->
-    <!-- <button @click="vivs = !vivs">toggle</button>
-    <div class="w-[200px] h-[200px] border  overflow-hidden relative">
-      <transition name="abc" class="">
-        <div v-if="vivs" class="w-[200px] absolute h-[200px] bg-orange-400"></div>
-      </transition>
-      <transition name="abc" class="">
-        <div v-if="!vivs" class="w-[200px] absolute h-[200px] bg-blue-400"></div>
-      </transition>
-    </div> -->
 
-    <!-- <Drawer :visible.sync="drawerVisible" class=" fixed left-0 bottom-0 w-[100vw]">
-      <template #header>
-        <div class="flex justify-between items-center">
-          <p>推荐歌单</p>
-          <Icon icon="ic:round-close" />
-        </div>
-      </template>
-    </Drawer> -->
-    <!-- <button @click="drawerVisible = !drawerVisible">drawerVisibleToggle</button> -->
     <Drawer
       :visible.sync="drawerVisible"
       direction="btt"
       :title="title"
       width="100vw"
     >
-      <!-- <template #header>
-        <div class="flex justify-between items-center">
-          <p>推荐歌单</p>
-          <Icon icon="clarity:times-line" />
-        </div>
-      </template> -->
+
       <div class="flex item-center my-[3vw]">
         <Icon class="mr-3" icon="uiw:like-o" />
         <span>优先推荐</span>
@@ -579,9 +557,9 @@
       </div>
     </Drawer>
 
-    <!-- <v-switch :value.sync="switchcheck"></v-switch> -->
-    <!-- <v-switch v-model="switchcheck"></v-switch> -->
-    <!-- <v-switch :value="switchcheck" @input="(e) => (switchcheck = e)"></v-switch> -->
+    <Drawer :visible.sync="sousuoVisible" :direction="'rtl'" :headershow="false" :width="'100vw'" :title="title" :switchcheck="switchcheck">
+      <sousuoview :visibles.sync="sousuoVisible"></sousuoview>
+    </Drawer>
   </div>
   </div>
 </template>
@@ -602,6 +580,7 @@ import hottalk from './components/hottalk.vue';
 import musiccalendar from './components/musiccalendar.vue';
 import Pnael from './components/Panel.vue';
 import Drawer from '@/components/Drawer.vue';
+import sousuoview from '../SousuoView.vue'
 
 export default {
   components: {
@@ -614,9 +593,11 @@ export default {
     musiccalendar,
     Pnael,
     Drawer,
+    sousuoview
   },
   data() {
     return {
+      sousuoVisible:false,
       switchcheck: false,
       checked: false,
       mineVisible: false,
@@ -720,10 +701,10 @@ export default {
     //每日推荐歌单请求
     axios
       .get(
-        'https://netease-cloud-music-c2c1ys55f-cc-0820.vercel.app/personalized'
+        'https://netease-cloud-music-c2c1ys55f-cc-0820.vercel.app/homepage/block/page'
       )
       .then((res) => {
-        this.recommendArr = res.data.result;
+        console.log(res.data.blocks)
       })
       .catch((err) => {
         console.log(err);
@@ -732,6 +713,8 @@ export default {
     //新歌速递请求
     newSong()
       .then((res) => {
+        console.log(res.data.data.blocks[1].creatives)
+        this.recommendArr = res.data.data.blocks[1].creatives;
         this.newsongArr = res.data.data.blocks[5].creatives;
         this.RankingArr = res.data.data.blocks[3].creatives; //排行榜数据
         this.hottapicArr = res.data.data.blocks[2].creatives;

@@ -39,7 +39,7 @@
           class="clr-i-solid clr-i-solid-path-1" />
         <path fill="none" d="M0 0h36v36H0z" />
       </svg>
-      <img  v-if="index!=0" :src="item.picUrl" alt="" class="w-[30vw] max-w-none rounded" />
+      <img  v-if="index!=0" :src="item.uiElement.image.imageUrl" alt="" class="w-[30vw] max-w-none rounded" />
       <span  v-if="index!=0" class=" absolute right-[5%] top-[5%] text-white flex items-center text-xs"><svg class="mr-2"
           xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 36 36">
           <path fill="white"
@@ -48,7 +48,7 @@
           <path fill="none" d="M0 0h36v36H0z" />
         </svg>{{ item.trackCount }}万</span>
       <span  v-if="index!=0" class="tracking-widest text-sm line-clamp-2">{{
-        item.name
+        item.uiElement.mainTitle.title
       }}</span>
     </div>
   </div>
