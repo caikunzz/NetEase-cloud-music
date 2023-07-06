@@ -1,9 +1,9 @@
 <template>
     <div>
-        <h1>Foo{{ count }}</h1>
+        <!-- <h1>Foo{{ count }}</h1> -->
         <!-- <button @click="fn">toggle dialog</button> -->
         <!-- <Dialog title="警告" message="我是提示内容"/> -->
-        <h1></h1>
+        <!-- <h1></h1> -->
     </div>
 </template>
 
@@ -11,12 +11,13 @@
 import Dialog from '@/components/Dialog/index'
 import store from '../store/index'
 import {mapState} from '@/vuex'
+import {getUserAccount} from '@/request'
     export default{
         computed:{
             // count(){
             //     return store.state.count
             // }
-            ...mapState(['count'])
+            // ...mapState(['count'])
         },
         // methods:{
         //     increase(){
@@ -32,8 +33,9 @@ import {mapState} from '@/vuex'
         //         })
         //     },
         // },
-        created(){
-            //Dialog({title:'警告',message:'我是提示内容!'})
+        async created(){
+            const res = await getUserAccount().catch(err=>console.log(err))
+            console.log(res)
         }
     }
 </script>

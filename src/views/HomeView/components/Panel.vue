@@ -52,7 +52,7 @@ export default {
     mounted() {
         bs = new BScroll(this.$refs.wrapper,{
             scrollX:true,
-            scrollY:false
+            scrollY:false,
         })
     },
     updated() {

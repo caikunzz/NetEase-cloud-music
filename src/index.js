@@ -11,8 +11,11 @@ import Switch  from '@/components/Switch';
 import IndexView from '@/views/IndexView.vue';
 import HomeView from '@/views/HomeView/HomeView.vue';
 import SousuoView from '@/views/SousuoView.vue'
+import Login from '@/views/Login.vue'
+import Songlist from '@/views/Songlist.vue'
 // import Dialog from './components/Dialog';
 // Vue.use(Dialog);
+import router from '@/router/router.js'
 
 import Vuex from '@/vuex'
 Vue.use(Vuex)
@@ -24,38 +27,46 @@ const store = new Vuex.Store({
 })
 
 //1.引入路由插件
-import VueRouter from 'vue-router'
+// import VueRouter from 'vue-router'
 
-// 2.注册路由所提供的全局组件
-Vue.use(VueRouter)
+// // 2.注册路由所提供的全局组件
+// Vue.use(VueRouter)
 
-// 3.
-const router = new VueRouter({
-  routes:[
-    //路径重定向
-    {
-      path:'/',
-      redirect:'/HomeView'
-    },
-    {
-      path:'/IndexView',
-      component:IndexView,
-    },
-    {
-      path:'/HomeView',
-      component:HomeView,
-    },
-    {
-      path:'/SousuoView',
-      component:SousuoView
-    }
-    ,
-    {
-      path:'/Foo',
-      component:()=>import('@/views/Foo.vue')
-    }
-  ]
-})
+// // 3.
+// const router = new VueRouter({
+//   routes:[
+//     //路径重定向
+//     {
+//       path:'/',
+//       redirect:'/Foo'
+//     },
+//     {
+//       path:'/IndexView',
+//       component:IndexView,
+//     },
+//     {
+//       path:'/HomeView',
+//       component:HomeView,
+//     },
+//     {
+//       path:'/SousuoView',
+//       component:SousuoView
+//     }
+//     ,
+//     {
+//       path:'/Foo',
+//       component:()=>import('@/views/Foo.vue')
+//     },
+//     {
+//       path:'/Login',
+//       component:Login
+//     },
+//     {
+//       path:'/Songlist',
+//       component:Songlist
+//     }
+//   ]
+// })
 
 
 

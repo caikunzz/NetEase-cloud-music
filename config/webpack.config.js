@@ -3,6 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const WebpackBar = require('webpackbar');
 const path = require('path');
 const { VueLoaderPlugin } = require('vue-loader');
+const CopyPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   entry: './src/index.js',
@@ -76,6 +77,11 @@ module.exports = {
     },
   },
   plugins: [
+    new CopyPlugin({
+      patterns:[
+        {from: './src/static', to:'./static'}
+      ]
+    }),
     new WebpackBar(),
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
