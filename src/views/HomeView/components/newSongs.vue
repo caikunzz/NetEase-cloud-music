@@ -41,8 +41,6 @@ export default {
       this.$emit('update:title', '新歌速递（新歌新碟）');
     },
   },
-  created() {
-    console.log(this.newsongArr)
-  }
+
 };
 </script>

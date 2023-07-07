@@ -582,6 +582,7 @@ import Pnael from './components/Panel.vue';
 import Drawer from '@/components/Drawer.vue';
 import sousuoview from '../SousuoView.vue'
 
+
 export default {
   components: {
     RecommondPlaylistitem,
@@ -676,11 +677,7 @@ export default {
       )
       .then((res) => {
         this.bannerArr = res.data.banners;
-        // let arr = res.data.banners;
-        // console.log(res)
-        // arr.forEach((item) => {
-        //     this.bannerArr.push(item.pic);
-        // });
+
       })
       .catch((err) => {
         console.log(err);
@@ -692,26 +689,12 @@ export default {
         'https://netease-cloud-music-c2c1ys55f-cc-0820.vercel.app/homepage/dragon/ball'
       )
       .then((res) => {
-        // console.log(res.data.data)
         this.menuArr = res.data.data;
       })
       .catch((err) => {
         console.log(err);
       });
-
-    //每日推荐歌单请求
-    axios
-      .get(
-        'https://netease-cloud-music-c2c1ys55f-cc-0820.vercel.app/homepage/block/page'
-      )
-      .then((res) => {
-        // console.log(res.data.blocks)
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-
+      
       // 新歌新碟
       axios.get('https://netease-cloud-music-api-five-roan-88.vercel.app/homepage/block/page')
       .then((res=>this.newsongArr = res.data.data.blocks[5].creatives))
@@ -719,37 +702,22 @@ export default {
     //新歌速递请求
     newSong()
       .then((res) => {
-        // console.log(res.data.data.blocks[1].creatives[1])
         this.recommendArr = res.data.data.blocks[1].creatives;
-        // this.newsongArr = res.data.data.blocks[5].creatives;
-        console.log(this.newsongArr[0].resources)
-        console.log(this.newsongArr[0].uiElement)
         this.RankingArr = res.data.data.blocks[3].creatives; //排行榜数据
         this.hottapicArr = res.data.data.blocks[2].creatives;
       })
       .catch((err) => console.log(err));
 
-      // newSong()
-      // .then((res) => {
-      //   // console.log(res.data.data.blocks[1].creatives[1])
-      //   // this.recommendArr = res.data.data.blocks[1].creatives;
-      //   this.newsongArr = res.data.data.blocks[5].creatives;
-      //   console.log(this.newsongArr)
-      //   // this.RankingArr = res.data.data.blocks[3].creatives; //排行榜数据
-      //   // this.hottapicArr = res.data.data.blocks[2].creatives;
-      // })
-      // .catch((err) => console.log(err));
 
 
     //音乐日历请求
     let today = new Date();
     let startTime = today.getTime();
-    today.setDate(today.getDate() + 1);
+    today.setDate(today.getDate() + 2);
     let endTime = today.getTime();
     // console.log(starTime, endTime);
     getMusicCalendar({ startTime, endTime })
       .then((res) => {
-        // console.log(res.data.data.calendarEvents);
         this.musiccalendarArr.push(res.data.data.calendarEvents[0]);
         this.musiccalendarArr.push(res.data.data.calendarEvents[1]);
       })
@@ -761,12 +729,7 @@ export default {
       this.width = window.innerWidth *0.73;
     })
   },
-  updated(){
-    this.width = window.innerWidth *0.73;
-    window.addEventListener('resize',()=>{
-      this.width = window.innerWidth *0.73;
-    })
-  }
+
 };
 </script>
 

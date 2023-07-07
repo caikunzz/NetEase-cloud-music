@@ -1,7 +1,7 @@
 <template>
-  <div class="flex" ref="box" @click="fn">
+  <div class="flex" ref="box" >
 
-    <div class="flex flex-col relative items-center mr-[3vw]" v-for="(item, index) in recommendArr" :key="item.id" >
+    <div class="flex flex-col relative items-center mr-[3vw]" v-for="(item, index) in recommendArr" :key="index">
       <viewmove v-if="index == 0"></viewmove>
       <svg v-if="index != 0" class=" absolute right-[5%] top-[22vw]" xmlns="http://www.w3.org/2000/svg" width="24"
         height="24" viewBox="0 0 36 36">
@@ -10,7 +10,7 @@
           class="clr-i-solid clr-i-solid-path-1" />
         <path fill="none" d="M0 0h36v36H0z" />
       </svg>
-      <img v-if="index != 0" :src="item.uiElement.image.imageUrl" alt="" class="w-[30vw] max-w-none rounded"  />
+      <img @click="fn" v-if="index != 0" :src="item.uiElement.image.imageUrl" alt="" class="w-[30vw] max-w-none rounded"  />
       <span v-if="index != 0" class=" absolute right-[5%] top-[5%] text-white flex items-center text-xs" ><svg class="mr-2"
           xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 36 36">
           <path fill="white"
@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     fn(){
-      console.log(123123);
+      console.log(111);
     }
   },
   updated() {

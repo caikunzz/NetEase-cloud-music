@@ -12,7 +12,7 @@
                     <img src="/static/code803.png" class="w-[50%]" v-else-if="!show" alt="">
                     <div v-if="maskshow"
                         class=" mask flex absolute left-0 top-0 bg-white bg-opacity-80 items-center justify-center w-[100%] h-[100%]">
-                        <span @click="pollingCheck"
+                        <span @click="loadagin"
                             class=" bg-red-700 shadow-2xl rounded-[25px] px-[10px] py-[5px] text-[14px] text-white">点击刷新</span>
                     </div>
                 </div>
@@ -48,10 +48,23 @@ export default {
         toback() {
             window.history.back()
         },
+        loadagin(){
+            async () =>{
+                const res = await getQRKey().catch(err => console.log(err));
+        // console.log(res.data.data.unikey);
+            const qrInfo = await getQrInfo(res.data.data.unikey).catch(err => console.log(err))
+            console.log(qrInfo.data.data.qrimg)
+            this.qrcode = qrInfo.data.data.qrimg
+            this.pollingCheck(res.data.data.unikey)
+            }
+        },
         pollingCheck(key, interval = 1000) {
             this.show = true;
             this.maskshow = false;
             const timer = setInterval(async () => {
+                this.$on('hook:beforeDestroy', () => {
+                clearInterval(timer)
+            })
                 const res = await checkQrStatus(key)
                 console.log(res.data.message, res.data.code)
                 if (res.data.code == 803) {
@@ -59,22 +72,19 @@ export default {
                     console.log(res.data.cookie, res.data.codse)
                     store.set('__m__cookie', res.data.cookie)
                     this.$router.push('HomeView')
+                    return false;
                 }else if (res.data.code == 802) {
                     this.show=false;
                 } else if (res.data.code == 800) {
-                    alert('此二维码已过期，请刷新或重试！')
+                    // alert('此二维码已过期，请刷新或重试！')
                     clearInterval(timer)
                     this.show=true;
-                    this.maskshow = true;
-                    
-
-                    
-                    
+                    this.maskshow = true; 
                 }
             }, interval);
-            this.$on('hook:beforeDestroy', () => {
-                clearInterval(timer)
-            })
+            // this.$on('hook:beforeDestroy', () => {
+            //     clearInterval(timer)
+            // })
         }
     },
     async created() {

@@ -45,7 +45,14 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader'
-      }
+      },
+      {
+        test: /\.jsx?$/,
+        use: {
+          loader: 'babel-loader',
+        },
+      },
+
     ],
   },
   mode: process.env.NODE_ENV,
@@ -54,7 +61,7 @@ module.exports = {
       '@': path.resolve(__dirname, '../src'),
       'vue': './vue/dist/vue.esm.js'
     },
-    extensions: ['.js', '.vue']
+    extensions: ['.js', '.vue','.jsx','json']
   },
   externals: {
     vue: 'Vue',

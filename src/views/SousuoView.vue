@@ -212,7 +212,7 @@ export default {
         )
         .then((res) => {
           this.serarchResult = res.data.result.allMatch;
-          console.log(res.data.result.allMatch);
+          // console.log(res.data.result.allMatch);
         })
         .catch((err) => console.log(err));
     },
@@ -231,7 +231,7 @@ export default {
     },
     toback() {
       // this.$router.push('HomeView');
-      console.log(this.visibles);
+      // console.log(this.visibles);
       this.$emit('update:visibles', false);
     },
   },
@@ -244,13 +244,7 @@ export default {
     // console.log(defaultres.data.data.showKeyword);
     this.defaultres = defaultres.data.data.showKeyword;
 
-    //排行榜
-    let lists = await axios.get(
-      'https://netease-cloud-music-c2c1ys55f-cc-0820.vercel.app/search/hot/detail'
-    );
-    // console.log(lists.data.data[0]);
-    this.paihangArr = lists.data.data;
-
+    
     // 榜单数据
     axios
       .get(

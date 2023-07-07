@@ -14,7 +14,7 @@ const router = new VueRouter({
       //路径重定向
       {
         path:'/',
-        redirect:'/HomeView'
+        redirect:'/Login'
       },
       {
         path:'/IndexView',
@@ -40,6 +40,14 @@ const router = new VueRouter({
       {
         path:'/Songlist',
         component:Songlist
+      },
+      {
+        path:'/Rest',
+        component:()=>import(/* webpackChunkName:'rest' */'@/views/Rest.vue')
+      },
+      {
+        path:'/JSX',
+        component:()=>import(/* webpackChunkName:'JSX' */'@/views/JSX')
       }
     ]
   })

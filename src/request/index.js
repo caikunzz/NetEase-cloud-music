@@ -5,13 +5,13 @@ const http = axios.create({
     baseURL:'https://netease-cloud-music-api-five-roan-88.vercel.app'
 })
 //添加请求拦截器h
-// http.interceptors.request.use(function(config){
-//   const cookie = store.get('__m__cookie') ?? '';
-//   config.params = config.params||{};
-//   config.params.cookie = cookie;
-//   // console.log(config);
-//   return config;
-// });
+http.interceptors.request.use(function(config){
+  const cookie = store.get('__m__cookie') ?? '';
+  config.params = config.params||{};
+  config.params.cookie = cookie;
+  // console.log(config);
+  return config;
+});
 export const fetchPlaylistHot = () =>{
    return  http
       .get(
@@ -45,8 +45,16 @@ export const getQrInfo = (key,qrimg=1) =>http.get('/login/qr/create',{params:{ke
 
 export const checkQrStatus  = (key) => http.get('/login/qr/check',{params:{key,timestamp:Date.now()}})
 
-export const getUserAccount = () => http.get('/user/account')
+
 
 // 获取歌单详情
 export const getSonglisthead = (id) =>http.get('/playlist/detail',{params:{id}})
 export const getSonglist = (id) =>http.get('/playlist/track/all',{params:{id}})
+
+
+// 获取账号信息
+export const getUserAccount = () => http.get('/user/account')
+
+
+// 获取用户信息 , 歌单，收藏，mv, dj 数量
+export const getUserSubcount = (id) => http.get('/user/subcount',{params:{id}})

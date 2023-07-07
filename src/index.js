@@ -14,26 +14,10 @@ import SousuoView from '@/views/SousuoView.vue'
 import Login from '@/views/Login.vue'
 import Songlist from '@/views/Songlist.vue'
 import router from '@/router/router.js'
-import store from '@/store';
-
-import Vuex from '@/vuex'
-// Vue.use(Vuex)
-// const store = new Vuex.Store({
-//   state: {
-//     count: 123,
-//     msg: 'hello, vuex！',
-//   },
-//   mutations: {
-//     increase(state) {
-//       state.count++;
-//     },
-//   },
-// });
+import store from '@/store/index';
 
 
 Vue.use(Vant);
-// Vue.use(Switch);
-// Vue.component('MineView', MineView)
 Vue.component('Icon', Icon);
 Vue.component('Drawer',Drawer)
 Vue.component('v-switch',Switch)
@@ -43,11 +27,7 @@ const app = new Vue({
   router,
   components: { App },
   template: '<App/>',
-  created() {
-    console.log(this.$store)
-  },
-  mounted() {
-  }
+
 });
 
 app.$mount();//编译把模板编译为浏览器能够识别的html片段，并复制给app的$el属性
