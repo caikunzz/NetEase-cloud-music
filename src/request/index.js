@@ -62,6 +62,7 @@ export const getSonglist = (id) =>http.get('/playlist/track/all',{params:{id}})
 export const getUserAccount = () => http.get('/user/account')
 
 
+
 // 获取用户信息 , 歌单，收藏，mv, dj 数量
 export const getUserSubcount = (uid) => http.get('/user/detail',{params:{uid}})
 
@@ -70,3 +71,7 @@ export const getUserLeave = () => http.get('/user/level')//等级
 export const getUserFollows = (uid) => http.get('/user/follows',{params:{uid}})//关注列表
 export const getUserFolloweds = (uid) => http.get('/user/followeds',{params:{uid}})//粉丝列表
 export const getEvent = (uid) => http.get('/user/event',{params:{uid}})
+
+export const getUserplaylist = (uid) => http.get('/user/playlist',{params:{uid}});//创建的歌单
+
+export const getboke = () =>http.get('/record/recent/album')
