@@ -14,7 +14,7 @@ const router = new VueRouter({
       //路径重定向
       {
         path:'/',
-        redirect:'/Login'
+        redirect:'/PersonalView'
       },
       {
         path:'/IndexView',
@@ -48,6 +48,18 @@ const router = new VueRouter({
       {
         path:'/JSX',
         component:()=>import(/* webpackChunkName:'JSX' */'@/views/JSX')
+      },
+      {
+        path:'/0708',
+        component:()=>import('@/views/Feat-0708.vue')
+      },
+      {
+        path:'/0708jsx',
+        component:()=>import('@/views/Feat-0708.jsx')
+      },
+      {
+        path:'/PersonalView',
+        component:()=>import('@/views/PersonalView')
       }
     ]
   })

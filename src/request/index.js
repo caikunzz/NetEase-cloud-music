@@ -1,5 +1,6 @@
 //所有的请求都定义在这个位置
 import axios  from "axios";
+import { expr } from "jquery";
 import store  from "storejs";
 const http = axios.create({
     baseURL:'https://netease-cloud-music-api-five-roan-88.vercel.app'
@@ -33,6 +34,11 @@ export const newSong=()=>{
 }
 
 
+export const getBanner = () => http('/banner?type=2')
+export const getFind = () => http('/homepage/dragon/ball')
+
+
+
 export const fetchSearchResult = (params) => http.get('/cloudsearch',{params})
 
 
@@ -57,4 +63,10 @@ export const getUserAccount = () => http.get('/user/account')
 
 
 // 获取用户信息 , 歌单，收藏，mv, dj 数量
-export const getUserSubcount = (id) => http.get('/user/subcount',{params:{id}})
+export const getUserSubcount = (uid) => http.get('/user/detail',{params:{uid}})
+
+
+export const getUserLeave = () => http.get('/user/level')//等级
+export const getUserFollows = (uid) => http.get('/user/follows',{params:{uid}})//关注列表
+export const getUserFolloweds = (uid) => http.get('/user/followeds',{params:{uid}})//粉丝列表
+export const getEvent = (uid) => http.get('/user/event',{params:{uid}})

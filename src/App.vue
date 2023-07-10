@@ -10,13 +10,13 @@
 
 <script>
 export default{
-  created(){
+  // created(){
     // console.log(this.$route.params)
     // 编程式导航
     // setTimeout(() => {
     //     this.$router.push('IndexView')
     // }, 10000);
-  }
+  // }
 }
 </script>
 

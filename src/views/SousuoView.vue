@@ -93,7 +93,7 @@
 
       <!-- 排行榜 -->
 
-      <van-swipe class="my-swipe" :loop="false" :width="width" :show-indicators="false" v-if="paihangArr.length > 0">
+      <van-swipe class="my-swipe" :loop="false" :width="thatwidth" :show-indicators="false" v-if="paihangArr.length > 0">
         <van-swipe-item v-for="(i, key) in 11" :key="i.id" style="width: 70vw"
           class="flex dark:bg-zinc-800 flex-col justify-between w-[70vw] mr-[3vw] shadow overflow-hidden rounded-2xl box-border p-3 bg-white">
           <h1 class="flex items-center py-[3vw] border-b mb-2">
@@ -147,6 +147,7 @@ export default {
   props: ['visibles','width'],
   data() {
     return {
+      thatwidth:this.width,
       defaultres: '',
       serarchworlds: '',
       serarchResult: [],
@@ -244,7 +245,6 @@ export default {
     // console.log(defaultres.data.data.showKeyword);
     this.defaultres = defaultres.data.data.showKeyword;
 
-    
     // 榜单数据
     axios
       .get(
@@ -268,8 +268,11 @@ export default {
         });
       });
 
+    this.thatwidth = window.innerWidth * 0.73;
+    window.addEventListener('resize', () => {
+      this.thatwidth = window.innerWidth * 0.73;
+    })
   },
-
 };
 </script>
 
