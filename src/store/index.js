@@ -24,11 +24,15 @@ const store = new Vuex.Store({
   state: {
     count: 123,
     msg: 'hello, vuex！',
+    show:false,
   },
   mutations: {
     increase(state) {
       state.count++;
     },
+    toggleshow(state){
+      state.show=!state.show
+    }
   },
 });
 export default store;

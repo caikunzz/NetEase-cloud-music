@@ -543,10 +543,10 @@ export default {
 
   beforeCreate(){
     if(_store.get('profile')){
-      const userinfo = JSON.parse(_store.get('profile'))
+      let userinfo= JSON.parse(_store.get('profile'))
       this.$store.state.userinfo = userinfo
-      console.log(this.$store.state.userinfo)
-      console.log(this)
+      // console.log(this.$store.state.userinfo)
+      // console.log(this)
     }
   },
 
@@ -559,13 +559,6 @@ export default {
       _store.set('profile',JSON.stringify(accountres.data.profile))
     }
 
-    // if(_store.get('profile')){
-    //   const userinfo = JSON.parse(_store.get('profile'))
-    //   this.$store.state.userinfo = userinfo
-    //   console.log(this.$store.state.userinfo)
-    //   console.log(this)
-    // }
-    
 
 
 
@@ -611,19 +604,6 @@ export default {
     const musicres = await getMusicCalendar({ startTime, endTime }).catch((err) => console.log(err));
     this.musiccalendarArr.push(musicres.data.data.calendarEvents[0]);
     this.musiccalendarArr.push(musicres.data.data.calendarEvents[1]);
-
-    
-//     getUserAccount()
-// .then((res)=>{
-//   console.log(res.data.profile);
-//   _store.set('userID',res.data.account.id);
-//   _store.set('userInfo',res.data.profile);
-//   getUserSubcount()
-//   .then((res)=>{console.log(res)})
-//   .catch(err=>console.log(err))
-// })
-// .catch(err=>console.log(err))
-
 
 
 

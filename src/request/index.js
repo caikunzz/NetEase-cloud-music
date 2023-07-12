@@ -75,3 +75,13 @@ export const getEvent = (uid) => http.get('/user/event',{params:{uid}})
 export const getUserplaylist = (uid) => http.get('/user/playlist',{params:{uid}});//创建的歌单
 
 export const getboke = () =>http.get('/record/recent/album')
+
+
+export const getTrackDetail = (id) => http.get('/song/detail', { params: { ids: id } });
+export const getArtist = (limit ) =>http.get('/artist/list',{params:{limit }})
+
+export const updateinfo = (info) => http.get('/user/update',{params:{...info}})
+
+
+// 重复昵称检测
+export const nicknameCheck = (nickname) =>http.get('/nickname/check',{params:{nickname}})

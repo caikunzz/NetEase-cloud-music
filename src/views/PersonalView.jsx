@@ -25,19 +25,28 @@ const Vantab = styled.section`
         font-weight: bold;
     }
     .van-tabs__wrap{
+        display: flex;
+        justify-content: center;
         padding-bottom: 2vw;
         position: sticky;
         z-index: 999;
         top: 10vw;
     }
+    .van-tabs__nav{
+        width: 80%;
+    }
 `
-import { mapState } from '@/vuex';
-import { getUserLeave, getUserFollows, getUserFolloweds, getUserSubcount, getUserplaylist, getboke } from '@/request';
+import { mapState,mapMutations } from '@/vuex';
+import { getUserLeave, getUserFollows, getUserFolloweds, getUserSubcount, getUserplaylist, getArtist } from '@/request';
 import { areaList } from '@vant/area-data';
 import { times } from 'lodash';
+import Modify from './Modify';
 // console.log(areaList);
 
 export default {
+    components :{
+        Modify
+    },
     render() {
         return (
             <div>
@@ -48,7 +57,7 @@ export default {
                             onClick={'toback'}
                             icon="teenyicons:left-outline"
                         />
-                        <span></span>
+                        <span ref="title" class="font-[550] text[16px] tracking-[0.5px]"></span>
                         <Icon class="text-[5vw]" icon="ri:more-2-line" />
                     </header>
                     <section
@@ -87,13 +96,13 @@ export default {
                     </section>
 
                     <section id='content' class="rounded-[12px] bg-white relative mt-[-2vh] w-[90%] mx-auto mb-[6vw] shadow-sm">
-                        <div class="flex flex-col relative items-center">
+                        <div class="w-[100%] flex flex-col relative items-center">
                             <img
                                 class=" shadow-lg w-[60px] h-[60px] rounded-[50%] absolute translate-y-[-50%]"
                                 src={this.userinfo.avatarUrl}
                                 alt=""
                             />
-                            <p class=" sticky top-[4vw] font-[550] text[16px] tracking-[0.5px] mt-[40px]">
+                            <p id='userName' class="font-[550] text[16px] tracking-[0.5px] mt-[40px]">
                                 {this.userinfo.nickname}
                             </p>
                             <div class="flex items-center text-[#9498a2] text-[12px] my-[2vh]">
@@ -140,12 +149,28 @@ export default {
                             </div>
 
                             <div class="flex items-center mb-[4vw] ">
-                                <span class="text-[#3f4659] font-[700] tracking-[1px] text-sm border rounded-[25px] border-gray-500 px-[4vw] py-[1vw] mr-[2vw]">
+                                <span onClick={this.toggleshow} class="text-[#3f4659] font-[700] tracking-[1px] text-sm border rounded-[25px] border-gray-500 px-[4vw] py-[1vw] mr-[2vw]">
                                     编辑资料
                                 </span>
-                                <span class="text-[#3f4659] font-[600] text-[14px] border border-gray-500 rounded-[50%] flex items-center jusitfy-center p-[2vw]">
-                                    <Icon icon="bytesize:chevron-bottom" color="black" />
+                                <span ref='spanstyle' class="transition-all ease-in-out origin-center duration-300 text-[#3f4659] font-[600] text-[14px] border border-gray-500 rounded-[50%] flex items-center jusitfy-center p-[1.5vw]" onClick={this.ulshow} >
+                                    <Icon icon="bytesize:chevron-bottom" color="black"  />
                                 </span>
+                            </div>
+
+                            <div ref="ulnode" class="mb-[4vw] h-0 w-[100%] overflow-hidden transition-all ease-in-out duration-300">
+                                <ul class="h-[40vw] w-[100%]  flex   justify-around ">
+                                    {this.artist.map(item => (
+                                        <li key={item.id} class="w-[25vw] py-[2vw] flex flex-col justify-around rounded-[12px] shadow items-center bg-[#f7f7f7]">
+                                            <img class="rounded-[50%] w-[12vw] h-[12vw]" src={item.img1v1Url} alt="" />
+                                            <p>{item.name}</p>
+                                            <p class="text-[#aaa] text-[12px]">你可能喜欢</p>
+                                            <p class=" flex px-[3vw] py-[1vw] items-center border rounded-[25px] border-red-500 text-red-500">
+                                                <Icon icon="material-symbols:add" />
+                                                <span>关注</span>
+                                            </p>
+                                        </li>
+                                    ))}
+                                </ul>
                             </div>
                         </div>
                     </section>
@@ -213,7 +238,7 @@ export default {
                                     </ul>
                                 </div>
 
-                                <div class="bg-white rounded-[8px] p-4 box-border my-[4vw]">
+                                <div class= " bg-white rounded-[8px] p-4  box-border my-[4vw]">
                                     <header class=" font-semibold mb-[4vw] flex items-center justify-between"><span>基本信息</span><span class=" font-[500] px-[10px] py-[3px] text-[14px] text-[#aaa] border rounded-[16px]">领取村民证</span></header>
                                     <ul class=" text-[#aaa] tracking-[2px]">
                                         <li class="flex items-center mb-[2vw]"><span class="mr-[1vw] ">村龄:</span>
@@ -238,10 +263,10 @@ export default {
                                                 <span class="mr-[1vw]">
                                                     {this.areaList.province_list[
                                                         this.userinfo.province
-                                                    ].replace('省', '')}
+                                                    ]?.replace('省', '')}
                                                 </span>
                                                 <span>
-                                                    {this.areaList.city_list[this.userinfo.city].replace(
+                                                    {this.areaList.city_list[this.userinfo.city]?.replace(
                                                         '市',
                                                         ''
                                                     )}
@@ -274,7 +299,12 @@ export default {
                         </van-tabs>
                     </Vantab>
                 </div>
+                <van-popup v-model={this.show} overlay={false} position="bottom" transition="">
+                <Modify></Modify>
+                </van-popup>
+                {/* <Modify></Modify> */}
             </div>
+            
         );
     },
     data() {
@@ -287,11 +317,22 @@ export default {
             Subccount: null,
             createlists: [],
             collectlists: [],
+            artist: [],
+            ul_show: false,
+            clickindex:0
         };
     },
     beforeCreate() {
         if (_store.get('profile')) {
-            const userinfo = JSON.parse(_store.get('profile'));
+            console.log(typeof _store.get('profile'))
+            // const userinfo = JSON.parse(_store.get('profile'));
+            // this.$store.state.userinfo = userinfo;
+            let userinfo={};
+            if(typeof _store.get('profile')=='object'){
+                userinfo = _store.get('profile')
+            }else{
+                userinfo = JSON.parse(_store.get('profile'))
+            }
             this.$store.state.userinfo = userinfo;
         }
         if (_store.get('userID')) {
@@ -300,41 +341,71 @@ export default {
         }
     },
     methods: {
+        ...mapMutations(['toggleshow']),
+        tomodify(){
+            this.$router.push('ModifyView')
+        },
+        ulshow() {
+            this.clickindex++;
+            // console.log(180*this.clickindex)
+            // this.$refs.spanstyle.classList.add(`rotate-[${180*this.clickindex}deg`);
+            this.$refs.spanstyle.style='rotate:0deg'
+            
+            this.ul_show = !this.ul_show;
+            // console.log(this.ul_show)
+            if (this.ul_show) {
+                this.$refs.ulnode.style = 'height:40vw'
+                this.$refs.spanstyle.style='rotate:180deg'
+                return;
+            }
+            this.$refs.ulnode.style = '';
+            this.$refs.spanstyle.style='rotate:360deg'
+        },
         toback() {
             window.history.back();
         },
-    },
-    computed: {
-        ...mapState(['userinfo', 'userid']),
-    },
-    updated() {
-
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const head = document.querySelector('#head');
-            const content = document.querySelector('#content');
-            const headheight = head.offsetHeight;
-            const contenttop = content.getBoundingClientRect().top;
-            const vantab = document.querySelector('.van-tabs__wrap');
-            const vantabtop = vantab.getBoundingClientRect().top;
-            if (contenttop < headheight) {
+        scrollStyle() {
+            // let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            let head = document.querySelector('#head');
+            let content = document.querySelector('#content');
+            let vantab = document.querySelector('.van-tabs__wrap');
+            let headheight, contenttop, vantabtop;
+            if (head) {
+                headheight = head.offsetHeight;
+            }
+            if (content) {
+                contenttop = content.getBoundingClientRect().top;
+            }
+            if (vantab) {
+                vantabtop = vantab.getBoundingClientRect().top;
+            }
+            if (contenttop < headheight && head) {
                 head.classList.add('bg-[#f7fafc]')
-                // head.classList.add('text-black')
                 head.classList.remove('text-white')
+                this.$refs.title.innerHTML=this.userinfo.nickname
             } else {
                 head.classList.remove('bg-[#f7fafc]')
-                // head.classList.remove('text-black')
                 head.classList.add('text-white')
+                this.$refs.title.innerHTML=''
             }
 
-            if (vantabtop < headheight) {
+            if (vantabtop < headheight && vantab) {
                 vantab.classList.add('bg-[#f7fafc]')
             } else {
                 vantab.classList.remove('bg-[#f7fafc]')
             }
-
-        })
+        }
+    },
+    computed: {
+        ...mapState(['userinfo', 'userid','show']),
+    },
+    updated() {
+        window.addEventListener('scroll', this.scrollStyle)
         // this.$on('hook:beforeDestroy',window.removeEventListener('scroll'))
+        // if (_store.get('profile')) {
+        //     const userinfo = JSON.parse(_store.get('profile'));
+        //     this.$store.state.userinfo = userinfo;
+        // }
     },
 
     async created() {
@@ -347,7 +418,6 @@ export default {
 
         const followeds = await getUserFolloweds(this.userid);
         this.fensi = followeds.data.followeds.length;
-        console.log(this.userinfo);
 
         const Subccountres = await getUserSubcount(this.userid);
         this.Subccount = Subccountres.data;
@@ -362,5 +432,12 @@ export default {
             return item.creator.nickname !== this.userinfo.nickname
         })
 
+        const artist = await getArtist(3)
+
+        this.artist = artist.data.artists;
+        // console.log(this.artist)
     },
+    beforeDestroy() {
+        window.removeEventListener('scroll', this.scrollStyle)
+    }
 };
